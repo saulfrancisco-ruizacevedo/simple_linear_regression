@@ -54,3 +54,15 @@ This project uses a set of training data representing housing sizes and their co
 
 Finally, the code plots the original data points and the predicted regression line, providing a visual understanding of the model's performance.
 
+## Why We Normalize Data
+
+In machine learning, we normalize data to ensure that all features contribute equally to the model. Normalization rescales the input features to have a mean of 0 and a standard deviation of 1. This helps gradient descent converge faster and prevents certain features (e.g., housing sizes) from dominating the optimization process simply because they have larger numerical values.
+
+In this project, the house sizes (`x_train`) are normalized before applying the gradient descent algorithm. Normalization is done by subtracting the mean (`mu`) and dividing by the standard deviation (`sigma`), so the data falls within a similar range. This makes the training more stable and efficient.
+
+### Rescaling the Parameters
+
+Once the model has been trained using normalized data, the learned parameters (`w` and `b`) must be rescaled back to their original scale to make meaningful predictions on real-world data. In the code, the final `w` and `b` are rescaled as follows:
+
+-   **Rescaling `w`**: We divide the learned `w` by the standard deviation of the original data (`sigma`).
+-   **Rescaling `b`**: We adjust `b` by subtracting the product of the rescaled `w` and the mean of the original data (`mu`).

@@ -56,19 +56,29 @@ def compute_metrics(y_true: np.ndarray, y_pred: np.ndarray) -> dict:
     }
 
 # Training data
-x_train = np.array([1, 2])  # Size in 1000 sqft
-y_train = np.array([300, 500])  # Price in 1000s USD
+x_train = np.array([173, 171, 189, 181])  # Size in 1000 sqft
+y_train = np.array([81, 72, 96, 94])  # Price in 1000s USD
+
+# Normalization
+mu = np.mean(x_train)
+sigma = np.std(x_train)
+x_train_normalized = (x_train - mu) / sigma
 
 # Regression parameters
 w_init, b_init = 0.0, 0.0
 iterations = 100000
-alpha = 0.01  # Learning rate
+alpha = 1.0e-3  # Learning rate
 
 # Perform gradient descent
-w_final, b_final, J_hist = gradient_descent(x_train, y_train, w_init, b_init, alpha, iterations)
-print(f"(w, b) found by gradient descent: ({w_final:.4f}, {b_final:.4f})")
+w_final_normalized, b_final_normalized, J_hist = gradient_descent(x_train_normalized, y_train, w_init, b_init, alpha, iterations)
+print(f"(w, b) found by gradient descent (normalized): ({w_final_normalized:.4f}, {b_final_normalized:.4f})")
 
+# Rescale w and b
+w_final = w_final_normalized / sigma  # Rescale w
+b_final = b_final_normalized - (w_final * mu)  # Rescale b
+print(f"(w, b) rescaled: ({w_final:.4f}, {b_final:.4f})")
 
+# Prediction in original scale
 y_pred = w_final * x_train + b_final
 
 metrics = compute_metrics(y_train, y_pred)
