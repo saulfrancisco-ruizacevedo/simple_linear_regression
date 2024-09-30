@@ -2,6 +2,24 @@
 
 This project demonstrates how to predict housing prices based on the size of the house using a technique called **linear regression**. The code is written in Python 3 and uses libraries like NumPy and Matplotlib to perform calculations and visualize the results.
 
+This repository contains two Python scripts implementing simple linear regression using gradient descent:
+
+### 1\. `simple_linear_regression.py`
+
+This script includes a comprehensive implementation of simple linear regression. Key features include:
+
+-   **Cost Computation**: It contains a function called `compute_cost`, which calculates and stores the cost history of the model during training. This function helps track how the cost evolves over iterations, providing insights into the convergence of the gradient descent algorithm.
+-   **Performance Metrics**: The script calculates various performance metrics such as Mean Absolute Error (MAE), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE). These metrics help evaluate the effectiveness of the regression model.
+-   **Data Visualization**: Using `matplotlib`, the script visualizes the training data points and the regression line. This graphical representation allows for a better understanding of how well the model fits the data.
+
+### 2\. `simple_linear_regression_2.py`
+
+This script offers a simplified implementation of simple linear regression. Key aspects include:
+
+-   **Linear Regression**: It focuses solely on performing linear regression using gradient descent without additional functionalities.
+-   **Console Output**: The results, including the learned parameters (slope and intercept), are printed to the console, providing immediate feedback on the model's performance.
+
+
 ## Table of Contents
 - [How It Works](#how-it-works)
 - [Requirements](#requirements)
@@ -29,7 +47,13 @@ pip install numpy matplotlib
 ## How to Run the Code
 
 ```bash 
-python housing_prices.py
+python simple_linear_regresion.py
+```
+
+or
+
+```bash 
+python simple_linear_regresion_2.py
 ```
 
 ## Explanation of the Code
